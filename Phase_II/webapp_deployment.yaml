@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  labels:
+    name: webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: webapp
+  template:
+    metadata:
+      labels:
+        name: webapp
+    spec:
+      containers:
+        - image: galitoshri/webapp:1.1
+          name: webapp
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: "200m"
+            limits:
+              cpu: "500m"
+          envFrom:
+            - configMapRef:
+                name: webapp-config

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  labels:
+    name: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: webapp
+  template:
+    metadata:
+      labels:
+        name: webapp
+    spec:
+      containers:
+        - image: galitoshri/webapp:1.1
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          name: webapp
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: "200m"
+            limits:
+              cpu: "500m"
+          envFrom:
+            - configMapRef:
+                name: webapp-config

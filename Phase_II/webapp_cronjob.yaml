@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: webapp-cleanup
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: pod-cleaner-sa
+          restartPolicy: OnFailure
+          containers:
+            - name: cleaner
+              image: rancher/kubectl:v1.35.5
+              command: ["/bin/bash", "-c", "kubectl delete hpa webapp-hpa", "kubectl delete deployment webapp-deployment", "kubectl delete service webapp-service"]
