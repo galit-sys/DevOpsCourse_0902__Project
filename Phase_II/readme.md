@@ -16,11 +16,11 @@ kubectl scale deployment/webapp --replicas=3
 kubectl expose deployment webapp --type=NodePort --port=5000
 
 ### applying development,  service, hpa, and configmap with file
-kubectl apply -f webapp_deployment.yaml
-kubectl apply -f webapp_service.yaml
-kubectl apply -f webapp_configmap.yaml
-kubectl apply -f webapp_hpa.yaml
-kubectl apply -f webapp_cronjob.yaml
+kubectl apply -f webapp_deployment.yaml  
+kubectl apply -f webapp_service.yaml  
+kubectl apply -f webapp_configmap.yaml  
+kubectl apply -f webapp_hpa.yaml  
+kubectl apply -f webapp_cronjob.yaml  
 
 
 
