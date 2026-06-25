@@ -4,10 +4,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Build') {
             steps {
-                sh "ls -ltr"
-                echo 'Main Project'
+                echo "Upgrade helm chert"
+                sh "helm upgrade -i webapp ./"
+                echo 'Done'
             }
         }
     }
