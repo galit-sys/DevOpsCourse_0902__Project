@@ -1,4 +1,4 @@
-# NEW Web description:
+# My Web description:
 
 A very base "Hello World" web site based on python flask module
 
